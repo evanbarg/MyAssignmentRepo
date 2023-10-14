@@ -17,15 +17,28 @@ $data | ForEach-Object {
 }
 
 #Ask for User Input
-$userInput = Read-Host -Prompt "Enter numeric to see numbers or alphabet to see letters"
+$userInput = Read-Host -Prompt "Enter 'numeric' to see numbers or 'alphabet' to see letters, or 'both' to see numebers and letters"
+$sortOrder = Read-Host - Prompt "Enter 'ascending' to sort ascending order or enter 'descending' to sort descending order"
 
-#Print Alpha
-if ($userInput -eq "alphabet"){
-    $alphaValues | ForEach-Object {Write-Output $_} 
-} elseif ($userInput -eq "numeric") {
-    $numericValues | ForEach-Object {Write-Output $_}
-} else{
-    Write-Output "Please enter a valid input: numeric, alphabet or both"
+#Print output
+#Numeric
+if ($userInput -eq "numeric") {
+    if ($sortOrder -eq "ascending") {
+        $numericValues | Sort-Object | ForEach-Object {Write-Output $_ }
+    } elseif ($sortOrder -eq "descending") {
+        $numericValues | Sort-Object -Descending | ForEach-Object {Write-Output $_ }
+    } else {
+        Write-Output "Please enter 'ascending' or descending'"
+    } #Alphabet
+} elseif ($userInput -eq "alphabet") {
+    if ($sortOrder -eq "ascending") {
+        $alphaValues | Sort-Object | ForEach-Object {Write-Output $_ }
+    } elseif ($sortOrder -eq "descending") {
+        $alphaValues | Sort-Object -Descending | ForEach-Object {Write-Output $_ }
+    } else {
+        Write-Output "Invalid sort order. Please enter 'ascending' or 'descending'."
+    }
+} else {
+    Write-Output "Invalid input. Please enter 'numeric' or 'alphabetic'."
 }
-
 
