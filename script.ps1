@@ -3,6 +3,7 @@ $data = Get-Content -Path "C:\Users\evan\Desktop\sample.txt"
 
 #Filter by Alpha or Numeric
 $alphaValues = @()
+$numericValues = @()
 $data | ForEach-Object {
     $values = $_.Split(',')
     ForEach ($value in $values) {
@@ -15,10 +16,16 @@ $data | ForEach-Object {
     }
 }
 
+#Ask for User Input
+$userInput = Read-Host -Prompt "Enter numeric to see numbers or alphabet to see letters"
 
 #Print Alpha
-$alphaValues | ForEach-Object {Write-Output $_} 
+if ($userInput -eq "alphabet"){
+    $alphaValues | ForEach-Object {Write-Output $_} 
+} elseif ($userInput -eq "numeric") {
+    $numericValues | ForEach-Object {Write-Output $_}
+} else{
+    Write-Output "Please enter a valid input: numeric, alphabet or both"
+}
 
-#Print Numeric
-$numericValues | ForEach-Object {Write-Output $_}
 
