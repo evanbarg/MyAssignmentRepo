@@ -12,13 +12,13 @@ $fileContent = Get-Content $filePath
 #filter the contnet
 switch ($filterType) {
     'numeric' {
-        $filteredContent = $fileContent | Where-Object { $_ -match '^\d+$' }
+        $filteredContent = $fileContent | Where-Object { $_ -match '^\d+' }
     }
-    'alphabetic' {
-        $filteredContent = $fileContent | Where-Object { $_ -match '^[a-zA-Z]+$' }
+    'alphabet' {
+        $filteredContent = $fileContent | Where-Object { $_ -match '^[a-zA-Z]+' }
     }
     'both' {
-        $filteredContent = $fileContent | Where-Object { $_ -match '^[a-zA-Z0-9]+$' }
+        $filteredContent = $fileContent | Where-Object { $_ -match '^[a-zA-Z0-9]+' }
     }
 }
 
